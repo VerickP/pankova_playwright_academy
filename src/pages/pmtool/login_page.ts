@@ -1,17 +1,20 @@
-import { Locator, Page } from "playwright-core";
 // src/pages/pmtool/login_page.ts
+import { Locator, Page } from "@playwright/test";
+
 export class LoginPage {
   readonly page: Page;
   readonly url = "https://tredgate.com/pmtool";
-  readonly usernameImput: Locator;
-  readonly paaswordInput: Locator;
+  readonly usernameInput: Locator;
+  readonly passwordInput: Locator;
   readonly loginButton: Locator;
+  readonly passwordForgottenAnchor: Locator; //property
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameImput = page.locator("#username");
-    this.paaswordInput = page.locator("#password");
+    this.usernameInput = page.locator("#username");
+    this.passwordInput = page.locator("#password");
     this.loginButton = page.locator(".btn");
+    this.passwordForgottenAnchor = page.locator("#forget_password"); //lokátor
   }
 
   async open() {
@@ -19,8 +22,9 @@ export class LoginPage {
   }
 
   async fillUsername(username: string) {
-    await this.usernameImput.fill(username);
+    await this.usernameInput.fill(username);
   }
+
   async fillPassword(password: string) {
     await this.passwordInput.fill(password);
   }
@@ -28,10 +32,14 @@ export class LoginPage {
   async clickLogin() {
     await this.loginButton.click();
   }
-//složená metoda
-   async login(username: string, password: string) {
+
+  async clickPasswordForgotten() {
+    await this.passwordForgottenAnchor.click();
+  }
+
+  async login(username: string, password: string) {
     await this.fillUsername(username);
     await this.fillPassword(password);
     await this.clickLogin();
-
+  }
 }

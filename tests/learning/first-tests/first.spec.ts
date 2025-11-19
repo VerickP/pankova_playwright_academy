@@ -1,5 +1,4 @@
 import { test } from "@playwright/test"; // tím se začítá každý nový test
-import { clear } from "node:console";
 
 test("First test", async ({ page }) => {
   //zavolání si ( pojmenivání ) async řeknemu mu kde běží (stránka)

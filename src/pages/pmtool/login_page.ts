@@ -1,5 +1,5 @@
 // src/pages/pmtool/login_page.ts
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, test, expect } from "@playwright/test";
 import { DashboardPage } from "./dashboard_page.ts";
 import { LostPasswordPage } from "./lost_password_page.ts";
 
@@ -9,6 +9,7 @@ export class LoginPage {
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
+  readonly pageHeader: Locator;
   readonly passwordForgottenAnchor: Locator; //property
 
   constructor(page: Page) {
@@ -16,6 +17,7 @@ export class LoginPage {
     this.usernameInput = page.locator("#username");
     this.passwordInput = page.locator("#password");
     this.loginButton = page.locator(".btn");
+    this.pageHeader = page.locator("h3.form-title");
     this.passwordForgottenAnchor = page.locator("#forget_password"); //lokátor
   }
 
@@ -46,9 +48,15 @@ export class LoginPage {
 
   async login(username: string, password: string): Promise<DashboardPage> {
     //jistota pri zmene chová se to stejně kdyby tam nebyla promise
-    await this.fillUsername(username);
-    await this.fillPassword(password);
-    await this.clickLogin();
+    await test.step("Login to Pmtoll", async () => {
+      await this.fillUsername(username);
+      await this.fillPassword(password);
+      await this.clickLogin();
+    });
     return new DashboardPage(this.page);
+  }
+  async pageHeaderHasText(headerText: string): Promise<LoginPage> {
+    await expect(this.pageHeader).toHaveText(headerText);
+    return this;
   }
 }

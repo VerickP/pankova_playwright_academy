@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "ui": "playwright test --ui",
+    "test": "playwright test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VerickP/pankova_playwright_academy.git"

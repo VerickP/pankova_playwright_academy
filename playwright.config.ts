@@ -24,13 +24,22 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
   timeout: 60_000, // maximálmí délka testu
+  globalTimeout: 1 * 60 * 60 * 1000, //maximální délka trvání jednono běhu testů ( npx playwhrite test )
+  expect: {
+    timeout: 7_000, //timeout cekáni na maximální limit čekání v rámci assertu
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    actionTimeout: 7_0000, // limit na max délku trvání akcí (clik a fill )
+    navigationTimeout: 30_000, // max limit čekání načtení stránky pro použítí (goto)
+    //ignoreHTTPSErrors: true // vypnutí kontroli certifikátů v prohlížeči !! OPATRNE NIKDY NE NA PRODUKCI !!
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    /* Collect trace whgen retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    screenshot: "only-on-failure",
+    video: "off",
+    trace: "retain-on-failure",
   },
 
   /* Configure projects for major browsers */

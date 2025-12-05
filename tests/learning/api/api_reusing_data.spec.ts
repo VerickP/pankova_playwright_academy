@@ -19,25 +19,28 @@ test("Reusing Data Between API Requests", async ({ request }) => {
       },
     }
   );
-
-  const registerResponseBody = registerResponse.json();
+  const registerResponseBody = await registerResponse.json();
   userId = registerResponseBody.userId;
 
-  const userRespons = await request.get(
+  const userResponse = await request.get(
     "https://tegb-backend-877a0b063d29.herokuapp.com/eshop",
     {
       params: { userId },
     }
   );
+  const userResponsBody = await userResponse.json();
+
   // * Připravte testy na kontrolu hodnot: username a email
   expect(
-    userRespondsBody.username,
+    userResponsBody.username,
     "userResponseBody.username should have value"
   ).toBe(username);
-  expect(userResponBody.email, "userResponseBody.email should have value").toBe(
-    email
-  );
-  /* Body
+  expect(
+    userResponsBody.email,
+    "userResponseBody.email should have value"
+  ).toBe(email);
+});
+/* Body
 {
     "userId": 2208,
     "username": "Aric.Wolf1",
@@ -46,4 +49,3 @@ test("Reusing Data Between API Requests", async ({ request }) => {
     "updatedAt": null,
     "active": 1
     */
-});

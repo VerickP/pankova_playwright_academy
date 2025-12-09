@@ -1,5 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
-
+import dotenv from "dotenv";
+dotenv.config(); //aby uměl s tím pracovat skrytá hesla
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

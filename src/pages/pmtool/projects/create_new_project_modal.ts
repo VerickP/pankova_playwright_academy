@@ -78,6 +78,8 @@ export class CreateNewProjectModal {
     return this;
   }
   async fillStartDate(startDate: string) {
+    await this.startDateInput.click(); //uprava
+    await this.startDateInput.press("Escape"); //uprava
     await this.startDateInput.fill(startDate);
     return this;
   }

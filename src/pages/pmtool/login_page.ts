@@ -59,4 +59,11 @@ export class LoginPage {
     await expect(this.pageHeader).toHaveText(headerText);
     return this;
   }
+  async emptyLoginFormVisualCheck(): Promise<this> {
+    //cvičení na visual testování
+    await expect(this.page).toHaveScreenshot("empty_login_page.png", {
+      fullPage: true,
+    });
+    return this;
+  }
 }

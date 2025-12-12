@@ -8,15 +8,13 @@ test.describe(
     tag: "@github-actions",
   },
   () => {
-    const username = process.env.PMTOOL_USERNAME as string;
-    const password = process.env.PMTOOL_PASSWORD as string;
-    let loginPage: LoginPage;
-
+    const username = process.env.PMTOOL_USERNAME as string; // údaje dávám sem, aby platily i pro všechny testy v rámci test describe)
+    const password = process.env.PMTOOL_PASSWORD as string; // údaje dávám sem, aby platily i pro všechny testy v rámci test describe)
+    let loginPage: LoginPage; // ušetřím tím 1 řádek, který nebudu muset psát v testech níže
     test.beforeEach(async ({ page }) => {
       loginPage = new LoginPage(page);
       await loginPage.open();
     });
-
     test("Pmtool Login", async () => {
       await loginPage
         .login(username, password)
@@ -24,7 +22,6 @@ test.describe(
           dashboard.dashboardAsserts(pmtoolTexts.dashboard.appName)
         );
     });
-
     test("Pmtool Login and Logout", async () => {
       await loginPage
         .login(username, password)
@@ -32,7 +29,6 @@ test.describe(
         .then((dashboard) => dashboard.clickLogout())
         .then((login) => login.pageHeaderHasText(pmtoolTexts.login.title));
     });
-
     test("Assert Login form inputs", async () => {
       await loginPage.pageHeaderHasText(pmtoolTexts.login.title);
     });

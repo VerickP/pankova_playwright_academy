@@ -10,6 +10,7 @@ export class DashboardPage {
   readonly bellButton: Locator;
   readonly appNameHeader: Locator;
   readonly projectsButton: Locator;
+
   constructor(page: Page) {
     this.page = page;
     this.profileButton = page.locator("#user_dropdown");

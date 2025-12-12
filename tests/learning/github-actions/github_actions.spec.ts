@@ -36,7 +36,7 @@ test.describe(
     });
 
     test("Assert Login form inputs", async () => {
-      await loginPage.pageHeaderHasText(pmtoolTexts.login.remembererMe);
+      await loginPage.pageHeaderHasText(pmtoolTexts.login.title);
     });
   }
 );

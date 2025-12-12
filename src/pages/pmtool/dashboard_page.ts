@@ -34,7 +34,7 @@ export class DashboardPage {
       .soft(this.profileButton, "Profile Button is Visible")
       .toBeVisible();
     await expect
-      .soft(this.appNameHeader, " Application Header have Name")
+      .soft(this.appNameHeader, "Application Header have Name")
       .toHaveText(appName); //"pojmenování to pak vidím "
     return this;
   }

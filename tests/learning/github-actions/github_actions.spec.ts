@@ -17,8 +17,6 @@ test.describe(
       await loginPage.open();
     });
 
-    test.beforeEach(async () => {});
-
     test("Pmtool Login", async () => {
       await loginPage
         .login(username, password)

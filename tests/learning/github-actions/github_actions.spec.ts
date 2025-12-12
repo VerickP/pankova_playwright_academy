@@ -1,5 +1,6 @@
 import { test } from "@playwright/test";
 import { LoginPage } from "../../../src/pages/pmtool/login_page.ts";
+import { pmtoolTexts } from "../asserts/dictionaries/dictionary.ts";
 
 test.describe(
   "GitHub Actions Tests",
@@ -16,7 +17,7 @@ test.describe(
       await loginPage.open();
     });
 
-    test.beforeEach(async ({ page }) => {});
+    test.beforeEach(async () => {});
 
     test("Pmtool Login", async () => {
       await loginPage
@@ -26,7 +27,7 @@ test.describe(
         );
     });
 
-    test("Pmtool Login and Logout", async ({ page }) => {
+    test("Pmtool Login and Logout", async () => {
       await loginPage
         .login(username, password)
         .then((dashboard) => dashboard.clickProfile())
@@ -35,7 +36,7 @@ test.describe(
     });
 
     test("Assert Login form inputs", async () => {
-      await loginPage.pageHeaderHasText(pmtoolTexts.login.rememberMe);
+      await loginPage.pageHeaderHasText(pmtoolTexts.login.remembererMe);
     });
   }
 );

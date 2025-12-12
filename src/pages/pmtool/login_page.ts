@@ -19,6 +19,7 @@ export class LoginPage {
     this.loginButton = page.locator(".btn");
     this.pageHeader = page.locator("h3.form-title");
     this.passwordForgottenAnchor = page.locator("#forget_password"); //lokátor
+    this.pageHeader = page.locator("h3.form-title");
   }
 
   async open() {
@@ -48,7 +49,7 @@ export class LoginPage {
 
   async login(username: string, password: string): Promise<DashboardPage> {
     //jistota pri zmene chová se to stejně kdyby tam nebyla promise
-    await test.step("Login to Pmtoll", async () => {
+    await test.step("Login to Pmtool", async () => {
       await this.fillUsername(username);
       await this.fillPassword(password);
       await this.clickLogin();

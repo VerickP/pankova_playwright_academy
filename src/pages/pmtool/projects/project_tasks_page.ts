@@ -11,11 +11,10 @@ export class ProjectTasksPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.page = page;
     this.profileButton = page.locator("#user_dropdown");
     this.logoutButton = page.locator("#logout");
     this.bellButton = page.locator("#user_notifications_report");
-    this.projectInfoButton = page.locator(".navbar-header .navbar-brand");
+    this.projectInfoButton = page.locator(".navbar-header .navbar-brand"); // měnilo se
   }
   async clickProfile() {
     await expect(this.bellButton).toBeVisible();
